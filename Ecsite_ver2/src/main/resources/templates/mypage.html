@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<mata charset="utf-8">
+<title>Handmade Nariko</title>
+<link rel="stylesheet" href="css/mystyle.css">
+<link rel="stylesheet" href="js/slick-theme.css" type="text/css">
+<link rel="stylesheet" href="js/slick.css" type="text/css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <script
+	src="js/slick.min.js"></script> <script src="myjs.js"></script>
+</head>
+<body>
+	<header>
+		<div class="shop_name">
+			<p>手作りちりめん細工の通販サイト</p>
+			<h1>ハンドメイドのNariko</h1>
+		</div>
+		<nav>
+			<ul class="menu">
+				<li><a href="/index"><i class="fas fa-home"></i>Home</a></li>
+				<li><a href="/mypage"><i class="fas fa-user-circle"></i>Mypage</a></li>
+				<li><a href="/cart"> <i class="fas fa-shopping-cart"></i>Cart
+				</a></li>
+				<!-- ユーザーがログインしていればユーザー名を表示 -->
+				<!-- if文の意味は、ユーザーデーターがnullならばLogin表示するという意味 -->
+				<li th:if="${user eq null}"><a href="/login"><i
+						class='fas fa-door-closed'></i>Login</a></li>
+				<li th:if="${user eq null}" th:text="ユーザー：ゲスト"></li>
+				<!-- if文の意味は、ユーザーデーターがnullでなければLogout表示するという意味 -->
+				<li th:if="${user ne null}"><a href="/logout"><i
+						class='fas fa-door-closed'></i>Logout</a></li>
+				<li th:if="${user ne null}" th:text="ユーザー：+${user}"></li>
+			</ul>
+		</nav>
+	</header>
+	<article>
+		<div class="main">
+			<section class="sec_goods">
+				<h2 class="mypage">Mypage</h2>
+				<div>
+					<dl>
+						<dt th:if="${user ne null}">ID</dt>
+						<dd th:if="${user eq null}" th:text="ユーザー：ゲスト"></dd>
+						<dd th:if="${user eq null}" th:text="ログインをしてください"></dd>
+						<dd th:if="${user ne null}" th:text="${user}"></dd>
+						<dt th:if="${mail ne null}">メールアドレス</dt>
+						<dd th:if="${mail ne null}" th:text="${mail}"></dd>
+					</dl>
+				</div>
+
+			</section>
+			<section class="sec_goods">
+			<!-- ユーザーがログインしていれば、購入履歴表示 -->
+			<table class="buylist" th:if="${user ne null}">
+					<caption class="boughthistory">購入履歴</caption>
+					<thead>
+						<tr>
+							<th>購入日</th>
+							<th>商品名</th>
+							<th>個数</th>
+							<th>単価</th>
+							<th>金額</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="goods_items">
+						<tr th:each="b:${buylist}">
+						<!-- ログインしていれば、カートに表示 -->
+						<td th:text="${b.BUY_DATE}"></td>
+						<td th:text="${b.GOODS_NAME}"></td>
+						<td th:text="${b.COUNT}"></td>
+						<td th:text="${b.GOODS_PRICE}+円"></td>
+						<td th:text="${b.COUNT}*${b.GOODS_PRICE}+円"></td>
+						</tr>
+					</tbody>
+				</table>
+				</section>
+		</div>
+		<div class="sub">
+			<aside>
+<!--				<div class="category">
+					<h2>CATEGORY カテゴリー</h2>
+					<ul class=category_list>
+						<li><a href="/goods?category=1">干支</a></li>
+						<li><a href="/goods?category=2">季節</a></li>
+						<li><a href="/goods?category=3">アクセサリー</a></li>
+						<li><a href="/goods?category=4">小物・雑貨</a></li>
+					</ul>
+				</div>
+				<div class="search">
+					<h2>価格で絞り込む</h2>
+					<form class=commit_price>
+						<input type="text" name="price[min]" size="4" maxlength="6">
+						<span>円～</span> <input type="text" name="price[max]" size="4"
+							maxlength="6"> <span>円</span>
+						<div class="buttom_submit">
+							<input type="submit" name="commit" value="絞り込む">
+						</div>
+					</form>
+				</div>
+			</aside>
+		</div>
+-->
+	</article>
+	<footer>
+		<small>Copyright 2019 Nariko</small>
+	</footer>
+	<script>
+		$(function() {
+			$('.myslider').slick({
+				autoplay : true,
+				dots : true,
+				infinite : true,
+				autoplaySpeed : 5000,
+				speed : 1000,
+				fade : true,
+
+			});
+		});
+	</script>
+</body>
+</html>

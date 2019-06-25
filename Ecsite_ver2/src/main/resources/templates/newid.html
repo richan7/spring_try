@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<mata charset="utf-8">
+<title>Handmade Nariko 新規登録</title>
+<link rel="stylesheet" href="css/loginstyle.css">
+<link rel="stylesheet" href="js/slick-theme.css" type="text/css">
+<link rel="stylesheet" href="js/slick.css" type="text/css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <script
+	src="js/slick.min.js"></script> <script src="myjs.js"></script>
+</head>
+<body>
+	<article>
+
+		<div class="login">
+			<h1>新規会員登録</h1>
+			<form method="POST" action="/madenewid">
+				<table>
+					<tr>
+						<th>ユーザーID</th>
+						<td><input type="text" name="newid" value=""></td>
+					</tr>
+				</table>
+				<table>
+					<tr th:each="err_id:${err_userid}">
+						<td th:text="${err_id}"></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<th>パスワード</th>
+						<td><input type="password" name="newpassword" value=""></td>
+					</tr>
+				</table>
+				<table>
+					<tr th:each="err_pw:${err_password}">
+						<td th:text="${err_pw}"></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<th>パスワード(確認)</th>
+						<td><input type="password" name="checkpw" value=""></td>
+					</tr>
+				</table>
+				<table>
+					<tr th:each="err_pw2:${err_password2}">
+						<td th:text="${err_pw2}"></td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<th>メールアドレス</th>
+						<td><input type="email" name="email" value=""></td>
+					</tr>
+				</table>
+				<table>
+					<tr th:each="err_em:${err_email}">
+						<td th:text="${err_em}"></td>
+					</tr>
+				</table>
+				<input class="new_bt" type="submit" value="登録">
+			</form>
+			<p><a href="/index">Handmade Nariko へ戻る</a></p>
+		</div>
+
+	</article>
+</body>
+</html>

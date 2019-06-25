@@ -1,0 +1,209 @@
+/*indexのページ設定*/
+body {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	max-width: 1100px;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+.shop_name {
+	position: relative;
+	width: 350px;
+	border-radius: 13px;
+	border: 5px solid #A5D6A7;
+}
+
+.shop_name h1, .shop_name p {
+	text-align: center;
+}
+
+header {
+	display: flex;
+}
+
+nav {
+	position: relative;
+	left: 52px;
+}
+
+.menu {
+	width: 600px;
+	display: flex;
+	justify-content: space-around;
+	padding-top: 100px;
+	/* padding-left: 3px; */
+	border-bottom: 1px solid #9E9E9E;
+}
+.myslider img{
+	width:600px;
+	height:540px;
+}
+.fa-home, .fa-user-circle, .fa-shopping-cart, .fa-door-closed {
+	font-size: 1.5rem;
+}
+/*indexの右側*/
+.main {
+	float: right;
+	width: 730px;
+}
+
+.myslider {
+	max-width: 600px;
+	margin: 0 auto 50px;
+	padding: 0;
+	height: auto;
+}
+
+.myslider img {
+	width: 100%;
+}
+
+/*indexにあるおすすめ商品の並び*/
+.recommend {
+	border-bottom: 1px solid #9E9E9E;
+}
+
+.sec_recommend ul {
+	display: flex;
+	padding: 0;
+}
+
+.sec_recommend img {
+	width: 200px;
+	height: 180px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.recommend_goods {
+	font-size: 0.9rem;
+	margin-left: 20px;
+}
+
+.sec_goods ul li dl dt {
+	display: flex;
+}
+
+/*indexの左側カテゴリーと検索*/
+.sub {
+	float: left;
+}
+
+.sub h2 {
+	text-align: center;
+	background-color: #fde8aa;
+	margin: 0;
+}
+
+.category, .search {
+	border: 4px solid #f3d98a;
+	margin-top: 20px;
+}
+
+.category_list li {
+	padding: 12px;
+	padding: 12px;
+/*	cursor: pointer; */
+	color: #673AB7;
+	/*  text-decoration:underline;*/
+	border-bottom: 1px dotted #9E9E9E;
+}
+
+.commit_price {
+	padding: 12px;
+}
+
+/*フッター*/
+footer {
+	clear: both;
+	text-align: center;
+	border-top: 1px solid #9E9E9E;
+}
+
+/*goodsのページ*/
+.goods {
+	border-bottom: 1px solid #9E9E9E;
+}
+.goodsform{
+	display:flex;
+}
+div.ichiran{
+	display:flex;
+	flex-wrap:wrap;
+}
+.ichiran ul li:nth-child(1){
+	width:200px;
+	height:180px;
+}
+.ichiran img{
+	width:200px;
+	height:180px;
+}
+
+.sec_goods ul{
+/*	display:flex;*/
+	flex-wrap:wrap;
+	padding: 9px;
+}
+.sec_goods ul li:nth-child(1){
+	width:225px;
+	height:180px;
+}
+.sec_goods ul li:nth-child(2) {
+/*	width:150px;*/
+/*	padding-left:20px;*/
+}
+.sec_goods ul li:nth-child(4) {
+	margin:0 10px;
+}
+.search ul li{
+	width:100px;
+	text-align:center;
+	padding-right:5px;
+}
+
+.search a{
+	text-decoration:none;
+}
+
+.search ul{
+	display:flex;
+	padding:0;
+}
+
+.sec_goods ul li {
+/*	width: 200px;
+/*	height: 200px;*/
+	margin: 0;
+}
+
+/*mypageのページ*/
+.mypage {
+	border-bottom: 1px solid #9E9E9E;
+}
+.bought{
+	border-collapse:collapse;
+}
+.boughthistory{
+	font-size:1.5rem;
+	font-weight:bolder;
+}
+
+/*CartとMypageの商品一覧の表*/
+
+.sec_goods table{
+	width:100%;
+}
+.buylist{
+	width:100%;
+}
+.sec_goods tr{
+	text-align:center;
+}
+
+
+

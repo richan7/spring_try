@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<mata charset="utf-8">
+<title>Handmade Nariko ログイン</title>
+<link rel="stylesheet" href="css/loginstyle.css">
+<link rel="stylesheet" href="js/slick-theme.css" type="text/css">
+<link rel="stylesheet" href="js/slick.css" type="text/css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <script
+	src="js/slick.min.js"></script> <script src="myjs.js"></script>
+</head>
+<body>
+	<article>
+		<div class="login">
+			<h1>ログイン</h1>
+			<form method="POST" action="/index">
+				<table>
+					<tr>
+						<th>ユーザーID</th>
+						<td><input type="text" name="id" value=""></td>
+					</tr>
+				</table>
+				<table>
+					<tr th:each="err_id:${err_user_id}">
+						<td th:text="${err_id}"></td>
+				</table>
+				<table>
+					<tr>
+						<th>パスワード</th>
+						<td><input type="password" name="password" value=""></td>
+					</tr>
+				</table>
+				<table>
+					<tr th:each="err_pw:${err_password}">
+						<td th:text="${err_pw}"></td>
+					</tr>
+				</table>
+				<input class="login_bt" type="submit" value="ログイン">
+			</form>
+
+				<p>新規登録はこちらへ</p>
+				<a href="/newid"><input class="new_bt" type="submit" value="新規登録"></a>
+				<p><a href="/index">Handmade Nariko へ戻る</a></p>
+
+		</div>
+	</article>
+</body>
+</html>
