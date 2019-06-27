@@ -19,7 +19,7 @@ public class GoodsForm implements Serializable{
 
 	private String pricemax;
 
-	private String goodsid;
+	private int goodsid;
 
 	private String category;
 
@@ -50,10 +50,10 @@ public class GoodsForm implements Serializable{
 		this.pricemax=pricemax;
 	}
 
-	public String getGoodsid() {
+	public int getGoodsid() {
 		return goodsid;
 	}
-	public void setGoodsid(String goodsid) {
+	public void setGoodsid(int goodsid) {
 		this.goodsid=goodsid;
 	}
 

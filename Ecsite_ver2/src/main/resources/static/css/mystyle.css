@@ -4,6 +4,7 @@ body {
 	margin-right: auto;
 	padding: 0;
 	max-width: 1100px;
+
 }
 
 ul li {
@@ -27,9 +28,11 @@ header {
 
 nav {
 	position: relative;
-	left: 52px;
+	/*left: 52px;*/
 }
-
+nav ul li{
+	font-size:1.2em;
+}
 .menu {
 	width: 600px;
 	display: flex;
@@ -52,7 +55,7 @@ nav {
 }
 
 .myslider {
-	max-width: 600px;
+	/*max-width: 600px;*/
 	margin: 0 auto 50px;
 	padding: 0;
 	height: auto;
@@ -69,19 +72,14 @@ nav {
 
 .sec_recommend ul {
 	display: flex;
+	flex-wrap: wrap;
 	padding: 0;
 }
 
 .sec_recommend img {
-	width: 200px;
+	max-width: 200px;
 	height: 180px;
-	padding-left: 20px;
-	padding-right: 20px;
-}
 
-.recommend_goods {
-	font-size: 0.9rem;
-	margin-left: 20px;
 }
 
 .sec_goods ul li dl dt {
@@ -105,6 +103,7 @@ nav {
 }
 
 .category_list li {
+	font-size:1.2em;
 	padding: 12px;
 	padding: 12px;
 /*	cursor: pointer; */
@@ -112,7 +111,9 @@ nav {
 	/*  text-decoration:underline;*/
 	border-bottom: 1px dotted #9E9E9E;
 }
-
+.category_list i{
+	font-size:1.8em;
+}
 .commit_price {
 	padding: 12px;
 }
@@ -181,6 +182,12 @@ div.ichiran{
 	margin: 0;
 }
 
+.buttom_submit input{
+	width:100px;
+	height:30px;
+	margin-top:5px;
+}
+
 /*mypageのページ*/
 .mypage {
 	border-bottom: 1px solid #9E9E9E;
@@ -189,8 +196,9 @@ div.ichiran{
 	border-collapse:collapse;
 }
 .boughthistory{
-	font-size:1.5rem;
+	font-size:2.0rem;
 	font-weight:bolder;
+	text-align:center;
 }
 
 /*CartとMypageの商品一覧の表*/
@@ -200,10 +208,48 @@ div.ichiran{
 }
 .buylist{
 	width:100%;
+	border:solid 2px;
+
+}
+.buylist th{
+	text-align:center;
+	border-right:dotted 1px;
+	border-bottom:solid 2px;
+	height:50px;
+}
+.buylist td{
+	height:30px;
+	border:dotted 1px;
 }
 .sec_goods tr{
 	text-align:center;
+	border:dotted 1px;
+	height:30px;
 }
-
-
+/*Cartのページ*/
+.whichbotton{
+	text-align:end;
+	margin:5px;
+}
+.whichbotton input{
+	width:200px;
+}
+.total{
+	text-align:end;
+}
+.total div{
+	margin-top:5px;
+	height:30px;
+	/*background-color:#c0c0c0;*/
+	text-align:end;
+}
+@media screen and (max-width: 768px){
+.myslider img{
+	width:500px;
+	height:370px;
+}
+.menu{
+	padding-top:10px;
+}
+}
 

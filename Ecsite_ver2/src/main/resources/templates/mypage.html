@@ -2,6 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <mata charset="utf-8">
+<meta name="viewport" content="width=device-width">
 <title>Handmade Nariko</title>
 <link rel="stylesheet" href="css/mystyle.css">
 <link rel="stylesheet" href="js/slick-theme.css" type="text/css">
@@ -10,17 +11,20 @@
 	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
 	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
 	crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> <script
 	src="js/slick.min.js"></script> <script src="myjs.js"></script>
 </head>
-<body>
-	<header>
-		<div class="shop_name">
+<body class="container-fluid">
+	<header class="row">
+		<div class="shop_name col-md-4 col-sm-4 col-xs-12">
 			<p>手作りちりめん細工の通販サイト</p>
 			<h1>ハンドメイドのNariko</h1>
 		</div>
 		<nav>
-			<ul class="menu">
+			<ul class="menu col-md-8 col-sm-8 col-xs-12">
 				<li><a href="/index"><i class="fas fa-home"></i>Home</a></li>
 				<li><a href="/mypage"><i class="fas fa-user-circle"></i>Mypage</a></li>
 				<li><a href="/cart"> <i class="fas fa-shopping-cart"></i>Cart
@@ -37,8 +41,8 @@
 			</ul>
 		</nav>
 	</header>
-	<article>
-		<div class="main">
+	<article class="row">
+		<div class="main col-md-12 col-sm-12 col-xs-12">
 			<section class="sec_goods">
 				<h2 class="mypage">Mypage</h2>
 				<div>
@@ -51,7 +55,11 @@
 						<dd th:if="${mail ne null}" th:text="${mail}"></dd>
 					</dl>
 				</div>
-
+				<div th:if="${user ne null}">
+					<form action="newid" method="POST">
+						<input type="button" name="delete" value="退会">
+					</form>
+				</div>
 			</section>
 			<section class="sec_goods">
 			<!-- ユーザーがログインしていれば、購入履歴表示 -->
@@ -67,8 +75,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="goods_items">
-						<tr th:each="b:${buylist}">
+						<tr class="goods_items" th:each="b:${buylist}">
 						<!-- ログインしていれば、カートに表示 -->
 						<td th:text="${b.BUY_DATE}"></td>
 						<td th:text="${b.GOODS_NAME}"></td>
@@ -80,31 +87,6 @@
 				</table>
 				</section>
 		</div>
-		<div class="sub">
-			<aside>
-<!--				<div class="category">
-					<h2>CATEGORY カテゴリー</h2>
-					<ul class=category_list>
-						<li><a href="/goods?category=1">干支</a></li>
-						<li><a href="/goods?category=2">季節</a></li>
-						<li><a href="/goods?category=3">アクセサリー</a></li>
-						<li><a href="/goods?category=4">小物・雑貨</a></li>
-					</ul>
-				</div>
-				<div class="search">
-					<h2>価格で絞り込む</h2>
-					<form class=commit_price>
-						<input type="text" name="price[min]" size="4" maxlength="6">
-						<span>円～</span> <input type="text" name="price[max]" size="4"
-							maxlength="6"> <span>円</span>
-						<div class="buttom_submit">
-							<input type="submit" name="commit" value="絞り込む">
-						</div>
-					</form>
-				</div>
-			</aside>
-		</div>
--->
 	</article>
 	<footer>
 		<small>Copyright 2019 Nariko</small>

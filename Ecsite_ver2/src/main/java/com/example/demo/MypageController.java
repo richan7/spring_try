@@ -50,5 +50,11 @@ public class MypageController {
 
 	}
 
+	@RequestMapping(path ="/newid", method = RequestMethod.POST)
+	public String userdelete(Model model) {
+
+		return "newid";
+	}
+
 
 }

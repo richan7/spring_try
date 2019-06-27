@@ -166,6 +166,8 @@ public class GoodsController {
 			CartService cs= new CartService(jdbcTemplate,model,sf.getId());
 			cs.Cart();
 
+			cs.Total();
+
 		}
 
 		return "cart";

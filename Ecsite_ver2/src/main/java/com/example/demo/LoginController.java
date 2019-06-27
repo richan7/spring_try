@@ -102,6 +102,12 @@ public class LoginController {
 						+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID"
 						+ " WHERE g.CATEGORY_ID=3 AND g.GOODS_NAME='音符ブローチ'");
 				model.addAttribute("jewelry",list_jewelry);
+				//季節のよびだし
+				List<Map<String,Object>>list_season;
+				list_season=jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE "
+						+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID"
+						+ " WHERE g.CATEGORY_ID=2 AND g.GOODS_ID=15");
+				model.addAttribute("season",list_season);
 
 
 		return "index";

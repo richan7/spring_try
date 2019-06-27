@@ -13,7 +13,6 @@ public class CartService {
 	private Model m;
 	private String user;
 
-
 	public CartService(JdbcTemplate jj,Model model,String id) {
 		j=jj;
 		m=model;
@@ -40,23 +39,39 @@ public class CartService {
 
 //				Date now = new Date();
 //				Date cartday= (Date) list.get(0).get("CART_DATE");
-//
 //				long nowd=now.getTime();
 //				long cartd=cartday.getTime();
 //				//時間で計算
 //				long day=(nowd-cartd)/(1000*60*60);
-//
 //				if(day>1) {
 //					j.update("DELETE FROM cartinfo WHERE CART_DATE=?",list.get(0).get("CART_DATE"));
 //				}
-
 
 //				for(int i=0; i<list.size(); i++) {
 //					if(now2.format(now.getTime().compareTo(list.get(i).get("CART_DATE"))) {
 //
 //					}
 //				}
+
 			}
 
 	}
+
+	public void Total() {
+		//カートの中身の合計金額を表示
+		List<Map<String, Object>> list;
+	/*	list = j.queryForList("SELECT SUM(g.GOODS_PRICE) "
+				+ "FROM goods g LEFT JOIN cartinfo c ON g.GOODS_ID=c.GOODS_ID "
+				+ "WHERE c.LOGIN_USER_ID=?",user);
+*/
+
+		list=j.queryForList("SELECT SUM(g.GOODS_PRICE* c.COUNT) FROM goods g LEFT JOIN cartinfo c ON g.GOODS_ID=c.GOODS_ID WHERE c.LOGIN_USER_ID=?",user);
+			for(int i=0; i<list.size(); i++) {
+				m.addAttribute("carttotal",list.get(i).get("SUM(g.GOODS_PRICE* c.COUNT)"));
+
+			}
+
+
+	}
+
 }

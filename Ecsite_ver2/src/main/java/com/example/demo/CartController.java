@@ -31,13 +31,14 @@ public class CartController {
 	GoodsForm sessiongf;
 
 	@RequestMapping(path ="/cart", method = RequestMethod.GET)
-	public String cart(Model model) {
+	public String cart(Model model, @ModelAttribute CartForm cf) {
 		model.addAttribute("user" , sf.getId());
 
 		//カートの中身------カートに入れた情報を表示 CartServiceのメソッドを呼び出す
 		CartService cs= new CartService(jdbcTemplate,model,sf.getId());
 		cs.Cart();
 
+		cs.Total();
 		//時間がたったらカートの中身が消える処理を書く
 
 
@@ -53,7 +54,7 @@ public class CartController {
 		//カートの中身
 		CartService cs= new CartService(jdbcTemplate,model,sf.getId());
 		cs.Cart();
-
+		cs.Total();
 		return "cart";
 	}
 
@@ -100,5 +101,14 @@ public class CartController {
 		}
 
 	}
+
+	@RequestMapping(path = "/goods?category", method = RequestMethod.POST)
+	public String keep(Model model, @ModelAttribute CartForm cf) {
+		model.addAttribute("user" , sf.getId());
+
+		return "goods";
+
+	}
+
 
 }
