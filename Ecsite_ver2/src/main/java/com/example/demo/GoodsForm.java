@@ -29,6 +29,8 @@ public class GoodsForm implements Serializable{
 
 	private int count;
 
+	private int stock;
+
 
 	public int getPriceorder() {
 		return priceorder;
@@ -84,7 +86,13 @@ public class GoodsForm implements Serializable{
 	public void setCount(int c) {
 		this.count=c;
 	}
+	public int getStock(){
+		return stock;
+	}
 
+	public void setStock(int s) {
+		this.stock=s;
+	}
 
 
 

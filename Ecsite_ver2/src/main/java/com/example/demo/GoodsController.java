@@ -44,35 +44,33 @@ public class GoodsController {
 		List<Map<String, Object>> list_category;
 		list_category=jdbcTemplate.queryForList("SELECT CATEGORY_NAME FROM goods_category WHERE CATEGORY_ID=?",sessiongf.getCategory());
 		model.addAttribute("goods_category", list_category);
-//		List<Map<String, Object>>list_category;
-//		list_category =gservice.categoryname();
-//		model.addAttribute("goods_category", list_category);
 
 		//SQLの商品マスタgoodsテーブルから読み込み
 				List<Map<String, Object>> list_goods;
-				list_goods = jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID "
+				list_goods = jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID,g.STOCK_FLAG "
 						+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID"
 						+ " WHERE g.CATEGORY_ID=? ORDER BY g.GOODS_PRICE", category);
 				model.addAttribute("goods", list_goods);
+//
+//				for(int i=0; i<list_goods.size(); i++) {
+//					list_goods.get(i).get("g.STOCK_FLAG")
+//					list_goods.get(i).get("g.STOCK_FLAG");
+//				}
+//		List<Map<String,Object>>list;
+//		list= jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID,g.STOCK_FLAG "
+//				+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID "
+//				+ "WHERE g.CATEGORY_ID=? ORDER BY g.GOODS_PRICE", category);
+//		model.addAttribute("" , list.get(0).get(""));
+
 
 //		//サービスクラスから呼び出し
 //		GoodsService gs= new GoodsService(model,sessiongf.getCategory());
 //		//カテゴリをh2に表示
-//
 //		model.addAttribute("goods_category", gService.Cgoods());
 //		//商品一覧を表示
 //		gs.Ggoods();
 
 
-		//画像
-/*		List<Map<String, Object>> list_photo;
-		list_photo = jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID "
-				+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID"
-				+ " WHERE g.CATEGORY_ID=?", category);
-		for(int i =0; i<list_photo.size(); i++) {
-			map=list_category.get(i);
-		}
-*/
 
 		return "goods";
 
@@ -92,7 +90,7 @@ public class GoodsController {
 //		gs.Cgoods();
 
 		//昇順降順
-		String sql="SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID "
+		String sql="SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID,g.STOCK_FLAG "
 				+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID "
 				+ " WHERE g.CATEGORY_ID=? ORDER BY g.GOODS_PRICE ";
 		int priceorder = gf.getPriceorder();
@@ -132,7 +130,7 @@ public class GoodsController {
 		model.addAttribute("goods_category", list_category);
 		//価格で絞り込んだときの表示
 		List<Map<String, Object>> list;
-		list = jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID "
+		list = jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID,g.STOCK_FLAG "
 				+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID "
 				+ "WHERE g.GOODS_PRICE>=? AND g.GOODS_PRICE<=? AND g.CATEGORY_ID=? ORDER BY g.GOODS_PRICE", gf.getPricemin(),gf.getPricemax(),sessiongf.getCategory());
 		model.addAttribute("goods", list);
@@ -155,6 +153,22 @@ public class GoodsController {
 			model.addAttribute("message","ログインしてください");
 		}
 		else {
+			//もし、在庫がなければ表示は変わらず
+			if(gf.getStock()==0) {
+				//カテゴリをh2に表示
+				List<Map<String, Object>> list_category;
+				list_category=jdbcTemplate.queryForList("SELECT CATEGORY_NAME FROM goods_category WHERE CATEGORY_ID=?",sessiongf.getCategory());
+				model.addAttribute("goods_category", list_category);
+				//SQLの商品マスタgoodsテーブルから読み込み
+				List<Map<String, Object>> list_goods;
+				list_goods = jdbcTemplate.queryForList("SELECT g.GOODS_PHOTO,c.CATEGORY_NAME,g.GOODS_NAME,g.GOODS_PRICE,g.GOODS_ID,g.STOCK_FLAG "
+						+ "FROM goods g LEFT JOIN goods_category c ON g.CATEGORY_ID=c.CATEGORY_ID"
+						+ " WHERE g.CATEGORY_ID=? ORDER BY g.GOODS_PRICE", sessiongf.getCategory());
+				model.addAttribute("goods", list_goods);
+				return "goods";
+			}
+			//在庫があればカートに遷移する
+			else {
 			//カートにいれた日
 			Date now = new Date();
 			SimpleDateFormat registerNow = new SimpleDateFormat("yyyy/MM/dd/HH/mm/ss");
@@ -166,6 +180,7 @@ public class GoodsController {
 			CartService cs= new CartService(jdbcTemplate,model,sf.getId());
 			cs.Cart();
 			cs.Total();
+			}
 
 		}
 

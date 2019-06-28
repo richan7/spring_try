@@ -93,8 +93,9 @@
 						<div th:each="g:${goods}">
 						<form class="goodsform" method="POST" action="/cart">
 							<ul>
+								<li><img th:if="${g.STOCK_FLAG eq 0}"th:src="@{../images/soldout.jpg}">
 							<!--<li><img th:if="${g.GOODS_PHOTO == null}" th:src="../images/soldout.jpg"></li>  -->
-								<li><img th:if="${g.GOODS_PHOTO ne null}" th:src="@{${g.GOODS_PHOTO}}" th:alt-title="${g.GOODS_NAME}"></li>
+								<img th:if="${g.STOCK_FLAG eq 1}" th:src="@{${g.GOODS_PHOTO}}" th:alt-title="${g.GOODS_NAME}"></li>
 								<li th:text="${g.GOODS_NAME}+'&nbsp;'+${g.GOODS_PRICE}+円"></li>
 
 								<li>数量<select name="count" th:value="${count}">
@@ -106,7 +107,7 @@
 									</select>
 								</li>
 								<li><input type="hidden" name="goodsid" th:value="${g.GOODS_ID}"></li>
-
+								<li><input type="hidden" name="stock" th:value="${g.STOCK_FLAG}"></li>
 								<li><input type="submit" id="addToCart" name="addToCart" value="カートに入れる"></li>
 							</ul>
 						</form>
