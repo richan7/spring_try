@@ -200,7 +200,11 @@ div.ichiran{
 	font-weight:bolder;
 	text-align:center;
 }
-
+.nothing{
+	text-align:center;
+	font-size:2em;
+	height:50px;
+}
 /*CartとMypageの商品一覧の表*/
 
 .sec_goods table{
@@ -211,13 +215,13 @@ div.ichiran{
 	border:solid 2px;
 
 }
-.buylist th{
+.goods_items th{
 	text-align:center;
 	border-right:dotted 1px;
 	border-bottom:solid 2px;
 	height:50px;
 }
-.buylist td{
+.goods_items td{
 	height:30px;
 	border:dotted 1px;
 }

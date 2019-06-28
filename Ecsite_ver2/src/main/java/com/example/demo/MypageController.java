@@ -39,7 +39,9 @@ public class MypageController {
 					+ "FROM goods g LEFT JOIN buyinfo b ON g.GOODS_ID=b.GOODS_ID "
 					+ " WHERE b.LOGIN_USER_ID=? ORDER BY b.BUY_DATE DESC",sf.getId());
 			model.addAttribute("buylist",list_buy);
-
+			if(list_buy.size()==0) {
+			model.addAttribute("nothing" , "購入履歴はありません");
+			}
 			return "mypage";
 
 		}
@@ -52,6 +54,11 @@ public class MypageController {
 
 	@RequestMapping(path ="/newid", method = RequestMethod.POST)
 	public String userdelete(Model model) {
+
+		jdbcTemplate.update("UPDATE user SET DELETE_FLAG=1 WHERE LOGIN_USER_ID=?",sf.getId());
+
+		sf.clear();
+
 
 		return "newid";
 	}

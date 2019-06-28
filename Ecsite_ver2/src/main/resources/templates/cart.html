@@ -51,7 +51,7 @@
 				<table class="buylist"  th:if="${user ne null}" >
 					<caption class="boughthistory">カートの中身</caption>
 					<thead>
-						<tr>
+						<tr class="goods_items">
 							<th>日付</th>
 							<th>品名</th>
 							<th>単価</th>
@@ -62,7 +62,7 @@
 					</thead>
 					<tbody>
 
-						<tr th:each="c:${cartlist}">
+						<tr class="goods_items" th:each="c:${cartlist}">
 							<!-- ログインしていれば、カートに表示 -->
 							<td th:text="${c.CART_DATE}"></td>
 							<td th:text="${c.GOODS_NAME}"></td>
@@ -85,7 +85,7 @@
 							<td th:text="${c.GOODS_PRICE}*${c.COUNT}+円"></td>
 							<td>
 								<form method="POST" action="/cart2">
-									<input type="hidden" name="goodsid" th:value="${c.GOODS_ID}">
+									<input type="hidden" name="cartid" th:value="${c.ID}">
 									<input type="submit" value="削除">
 							 	</form>
 							</td>
@@ -94,7 +94,10 @@
 					</tbody>
 				</table>
 				<div class="total row" >
-					<div class="col-md-12 col-sm-12 col-xs-12" th:text="合計：+${carttotal}+円"></div>
+						<div class="col-md-12 col-sm-12 col-xs-12" th:if="${user ne null and carttotal ne null }">
+							<div th:text="合計：+${carttotal}+円"></div>
+						</div>
+				<!-- <div class="col-md-12 col-sm-12 col-xs-12" th:if="${user eq null}" th:text="合計：0円"></div> -->
 				</div>
 				<div class="whichbotton" th:if="${user ne null}">
 					<!-- 購入ボタンを押すと画面移動 -->

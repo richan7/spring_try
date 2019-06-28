@@ -56,36 +56,42 @@
 					</dl>
 				</div>
 				<div th:if="${user ne null}">
-					<form action="newid" method="POST">
-						<input type="button" name="delete" value="退会">
+					<form action="/newid" method="POST">
+						<input type="submit" value="退会">
 					</form>
 				</div>
 			</section>
+
 			<section class="sec_goods">
-			<!-- ユーザーがログインしていれば、購入履歴表示 -->
-			<table class="buylist" th:if="${user ne null}">
+
+				<!-- ユーザーがログインしていれば、購入履歴表示 -->
+				<table class="buylist" th:if="${user ne null}">
 					<caption class="boughthistory">購入履歴</caption>
+
 					<thead>
-						<tr>
+						<tr class="goods_items">
 							<th>購入日</th>
 							<th>商品名</th>
 							<th>個数</th>
 							<th>単価</th>
 							<th>金額</th>
 						</tr>
+
 					</thead>
 					<tbody>
 						<tr class="goods_items" th:each="b:${buylist}">
-						<!-- ログインしていれば、カートに表示 -->
-						<td th:text="${b.BUY_DATE}"></td>
-						<td th:text="${b.GOODS_NAME}"></td>
-						<td th:text="${b.COUNT}"></td>
-						<td th:text="${b.GOODS_PRICE}+円"></td>
-						<td th:text="${b.COUNT}*${b.GOODS_PRICE}+円"></td>
+							<!-- ログインしていれば、カートに表示 -->
+							<td th:text="${b.BUY_DATE}"></td>
+							<td th:text="${b.GOODS_NAME}"></td>
+							<td th:text="${b.COUNT}"></td>
+							<td th:text="${b.GOODS_PRICE}+円"></td>
+							<td th:text="${b.COUNT}*${b.GOODS_PRICE}+円"></td>
 						</tr>
+
 					</tbody>
 				</table>
-				</section>
+<div class="nothing" th:text="${nothing}"></div>
+			</section>
 		</div>
 	</article>
 	<footer>

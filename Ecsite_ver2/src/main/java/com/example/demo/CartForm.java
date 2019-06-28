@@ -13,6 +13,8 @@ public class CartForm implements Serializable{
 
 	private int goodsid;
 
+	private int cartid;
+
 	public int getCount(){
 		return count;
 	}
@@ -29,7 +31,13 @@ public class CartForm implements Serializable{
 		this.goodsid=gi;
 	}
 
+	public int getCartid(){
+		return cartid;
+	}
 
+	public void setCartid(int ci) {
+		this.cartid=ci;
+	}
 
 
 }

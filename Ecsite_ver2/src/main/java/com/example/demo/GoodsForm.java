@@ -29,6 +29,7 @@ public class GoodsForm implements Serializable{
 
 	private int count;
 
+
 	public int getPriceorder() {
 		return priceorder;
 	}
@@ -83,6 +84,7 @@ public class GoodsForm implements Serializable{
 	public void setCount(int c) {
 		this.count=c;
 	}
+
 
 
 

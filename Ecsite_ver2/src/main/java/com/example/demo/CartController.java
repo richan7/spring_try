@@ -37,7 +37,6 @@ public class CartController {
 		//カートの中身------カートに入れた情報を表示 CartServiceのメソッドを呼び出す
 		CartService cs= new CartService(jdbcTemplate,model,sf.getId());
 		cs.Cart();
-
 		cs.Total();
 		//時間がたったらカートの中身が消える処理を書く
 
@@ -50,7 +49,7 @@ public class CartController {
 		model.addAttribute("user" , sf.getId());
 
 		//削除ボタンを押したとき指定した商品のカートの中身が消える
-		jdbcTemplate.update("DELETE FROM cartinfo WHERE GOODS_ID=?",cf.getGoodsid());
+		jdbcTemplate.update("DELETE FROM cartinfo WHERE ID=?",cf.getCartid());
 		//カートの中身
 		CartService cs= new CartService(jdbcTemplate,model,sf.getId());
 		cs.Cart();

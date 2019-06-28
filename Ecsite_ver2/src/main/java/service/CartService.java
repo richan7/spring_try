@@ -22,7 +22,7 @@ public class CartService {
 	public void Cart() {
 		//カートに入れた情報を表示
 		List<Map<String, Object>> list;
-		list = j.queryForList("SELECT g.GOODS_NAME,g.GOODS_PRICE,c.CART_DATE,g.GOODS_ID,c.COUNT "
+		list = j.queryForList("SELECT g.GOODS_NAME,g.GOODS_PRICE,c.CART_DATE,g.GOODS_ID,c.COUNT,c.ID "
 				+ "FROM goods g LEFT JOIN cartinfo c ON g.GOODS_ID=c.GOODS_ID "
 				+ " WHERE c.LOGIN_USER_ID=?",user);
 
@@ -60,17 +60,11 @@ public class CartService {
 	public void Total() {
 		//カートの中身の合計金額を表示
 		List<Map<String, Object>> list;
-	/*	list = j.queryForList("SELECT SUM(g.GOODS_PRICE) "
-				+ "FROM goods g LEFT JOIN cartinfo c ON g.GOODS_ID=c.GOODS_ID "
-				+ "WHERE c.LOGIN_USER_ID=?",user);
-*/
 
-		list=j.queryForList("SELECT SUM(g.GOODS_PRICE* c.COUNT) FROM goods g LEFT JOIN cartinfo c ON g.GOODS_ID=c.GOODS_ID WHERE c.LOGIN_USER_ID=?",user);
+		list=j.queryForList("SELECT SUM(g.GOODS_PRICE* c.COUNT) AS total FROM goods g LEFT JOIN cartinfo c ON g.GOODS_ID=c.GOODS_ID WHERE c.LOGIN_USER_ID=?",user);
 			for(int i=0; i<list.size(); i++) {
-				m.addAttribute("carttotal",list.get(i).get("SUM(g.GOODS_PRICE* c.COUNT)"));
-
+				m.addAttribute("carttotal",list.get(i).get("total"));
 			}
-
 
 	}
 

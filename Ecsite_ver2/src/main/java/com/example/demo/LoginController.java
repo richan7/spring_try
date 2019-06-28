@@ -72,7 +72,7 @@ public class LoginController {
 			List<Map<String,Object>>list;
 			list=jdbcTemplate.queryForList("SELECT LOGIN_USER_ID,PASSWORD "
 					+ "FROM user "
-					+ "WHERE LOGIN_USER_ID=? AND PASSWORD=?",lf.getId(),lf.getPassword());
+					+ "WHERE LOGIN_USER_ID=? AND PASSWORD=? and DELETE_FLAG=0",lf.getId(),lf.getPassword());
 
 			//格納された1行ずつのデーターがない場合、ユーザー登録されていない
 			if(list.size()==0) {

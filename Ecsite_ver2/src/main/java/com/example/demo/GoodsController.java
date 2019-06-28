@@ -165,7 +165,6 @@ public class GoodsController {
 			//カートの中身------カートに入れた情報を表示 CartServiceのメソッドを呼び出す
 			CartService cs= new CartService(jdbcTemplate,model,sf.getId());
 			cs.Cart();
-
 			cs.Total();
 
 		}
